@@ -13,7 +13,7 @@
         <div class="headerinner">
             <br>
                     <h3 style="color:white;margin-left: 20%;padding-top: 30px;">
-                       LOGIN SISTEM AKADEMIK MAHASISWA INSANPEMBENGUNAN
+                       LOGIN SISTEM AKADEMIK MAHASISWA INSAN PEMBENGUNAN 
                     </h3>
 
 
