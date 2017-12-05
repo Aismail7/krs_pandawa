@@ -7,7 +7,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <h3 style="color:white;">Sistem Informasi Portal Kampus STMIK Insan Pembangunan</h3>
+                    <h3 style="color:white;">Sistem Informasi Akademik Mahasiswa Insan Pembangunan</h3>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
