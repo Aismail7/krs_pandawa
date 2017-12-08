@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\dosen;
 
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 
 use App\Models\MataKuliah;
 use App\Models\Mahasiswa;
@@ -53,6 +55,7 @@ class DosenKrsCtrl extends Controller
               `krs`.`id` ");
         $isian = DB::select("select count(status) as jml from tbl_krs where status=0");
          // dd($isian);
+         Session::set('isian', $isian[0]->jml);
         return view('dosen.persetujuan.index',$this->data,['isian'=>$isian]);
 
     }

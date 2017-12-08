@@ -96,10 +96,8 @@
                 <a href="{{route('persetujuan.index')}}" style="color:white;">
                     <i class="ti-panel"></i>
                     <p>Persetujuan KRS 
-                        @if(!empty($isian[0]))
-                    @if($isian[0]->jml > 0)
-                        <span class="badge"  style="margin-left:10px;background:red;">{{$isian[0]->jml}}</span>
-                    @endif
+                    @if(Session::get('isian') > 0)
+                        <span class="badge"  style="margin-left:10px;background:red;">{{Session::get('isian')}}</span>
                     @endif
                     
                     </p>
