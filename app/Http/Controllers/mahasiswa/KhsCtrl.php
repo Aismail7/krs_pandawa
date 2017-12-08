@@ -30,22 +30,25 @@ class KhsCtrl extends Controller
         $this->data['khs'] = Krs::whereHas('krsdetil',function($q){
             $q->has('nilai');
         })->get();
-$this->data['krsdetail'] = Krs::join('tbl_krs_detil', 'tbl_krs.id', '=', 'tbl_krs_detil.krs_id')
- ->leftjoin('tbl_nilai', 'tbl_krs.mahasiswa_id', '=', 'tbl_nilai.mahasiswa_id')
- ->where('tbl_krs.mahasiswa_id', '=', $mhs)
- ->groupby('tbl_krs_detil.jadwal_id')
-->get();
-// dd($mhs);
-// return $this->data['krsdetail'];
-        // $this->data['krsdetail']="select * from tbl_krs as a
-        //                             INNER JOIN tbl_krs_detil as b
-        //                             on a.id=b.krs_id 
-        //                             LEFT JOIN tbl_nilai as c 
-        //                             on a.mahasiswa_id=c.mahasiswa_id
-        //                             where a.mahasiswa_id='$mhs'
-        //                             GROUP BY b.jadwal_id";
 
 
+
+            $this->data['krsdetail'] = DB::select("select b.* from tbl_krs as a
+                                                    INNER JOIN tbl_krs_detil as b
+                                                        on a.id=b.krs_id 
+                                                    LEFT JOIN tbl_nilai as c 
+                                                        on a.mahasiswa_id=c.mahasiswa_id
+                                                    LEFT JOIN tbl_mahasiswa  as d
+                                                        on a.mahasiswa_id=d.id
+                                                    LEFT JOIN tbl_jadwal as e
+                                                        on b.jadwal_id=e.id
+                                                    LEFT JOIN tbl_mk as f
+                                                        on e.mk_id=f.id
+                                                    INNER JOIN tbl_bobot as g
+                                                        on c.bobot_id=g.id
+                                                    where a.mahasiswa_id=$mhs
+                                                    GROUP BY e.id, f.id");
+dd ($this->data);
         return view('mahasiswa.khs.index',$this->data);
     }
 
