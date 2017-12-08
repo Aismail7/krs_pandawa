@@ -21,6 +21,10 @@ class Krs extends Model
     	return $this->belongsTo('App\Models\Mahasiswa','mahasiswa_id','id');
     }
 
+    public function mhs(){
+        return $this->belongsTo('App\Models\Mahasiswa','mahasiswa_id','id');
+    }
+
     public function getStatutaAttribute(){
         $status  = $this->attributes['status'];
         switch ($status) {

@@ -27,13 +27,14 @@ class KhsCtrl extends Controller
         // dd($mhs);
         $this->data['title'] = 'Nilai - Kartu Hasil Studi ';
         // $this->data['mh'] = Krs::where('mahasiswa_id','=',Auth::user()->mahasiswa->id)->get();
-        $this->data['khs'] = Krs::whereHas('krsdetil',function($q){
+        $this->data['khs'] = Krs::whereHas('mahasiswa_id','=',$mhs)->whereHas('krsdetil',function($q){
             $q->has('nilai');
         })->get();
 
 
 
-            $this->data['krsdetail'] = DB::select("select b.* from tbl_krs as a
+            $this->data['khsdetail'] = DB::select("
+                select * from tbl_krs as a
                                                     INNER JOIN tbl_krs_detil as b
                                                         on a.id=b.krs_id 
                                                     LEFT JOIN tbl_nilai as c 
@@ -46,9 +47,9 @@ class KhsCtrl extends Controller
                                                         on e.mk_id=f.id
                                                     INNER JOIN tbl_bobot as g
                                                         on c.bobot_id=g.id
-                                                    where a.mahasiswa_id=$mhs
+                                                    where a.mahasiswa_id='26'
                                                     GROUP BY e.id, f.id");
-dd ($this->data);
+// dd ($this->data);
         return view('mahasiswa.khs.index',$this->data);
     }
 

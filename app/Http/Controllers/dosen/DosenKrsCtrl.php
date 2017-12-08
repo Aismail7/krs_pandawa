@@ -51,8 +51,9 @@ class DosenKrsCtrl extends Controller
               AND `tbl_mahasiswa`.`deleted_at` IS NULL 
             GROUP BY `tbl_mahasiswa`.`id`,
               `krs`.`id` ");
-        // dd($cek);
-        return view('dosen.persetujuan.index',$this->data);
+        $isian = DB::select("select count(status) as jml from tbl_krs where status=0");
+         // dd($isian);
+        return view('dosen.persetujuan.index',$this->data,['isian'=>$isian]);
 
     }
 
@@ -105,6 +106,7 @@ class DosenKrsCtrl extends Controller
         $this->data['beban_studi'] = Nilai::MaxSks($this->data['ipk']);
         $this->data['peserta'] = Jadwal::Peserta();
         $this->data['calon_peserta'] = Jadwal::CalonPeserta();
+
         return view('dosen.persetujuan.edit',$this->data);
         
     }
