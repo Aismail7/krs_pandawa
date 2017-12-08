@@ -60,10 +60,10 @@ Route::group(['namespace' => 'mahasiswa','prefix' => 'mahasiswa','middleware' =>
 
 // Routing untuk user level dosen
 Route::group(['namespace' => 'dosen','prefix' => 'dosen','middleware' => 'dosen'], function() {
-    Route::get('/', function () {
-        return view('dosen.dashboard',['title' => 'Dashboard']);
-    })->name('dosen');
-
+    // Route::get('/', function () {
+    //     return view('dosen.dashboard',['title' => 'Dashboard']);
+    // })->name('dosen');
+      Route::get('/','DosenKrsCtrl@dashboard')->name('dosen');
     Route::resource('persetujuan','DosenKrsCtrl');
     Route::resource('nilai','NilaiCtrl');
     Route::get('nilai/{id}/nilaiedit','NilaiCtrl@editnilai')->name('nilai.nilaiedit');

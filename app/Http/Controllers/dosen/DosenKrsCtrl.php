@@ -65,9 +65,15 @@ class DosenKrsCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+
+    public function dashboard()
     {
-        //
+        $this->data['title'] = "Persetujuan KRS - Sistem Informasi Akademik Online";
+     $isian = DB::select("select count(status) as jml from tbl_krs where status=0");
+         // dd($isian);
+         Session::set('isian', $isian[0]->jml);
+          return view('dosen.dashboard',$this->data);
     }
 
     /**
@@ -124,7 +130,7 @@ class DosenKrsCtrl extends Controller
     public function update(Request $request, $id)
     {
         //
-        dd($id);
+        // dd($id);
         KRS::find($id)->update(['status' => $request->input('status'),'tgl_persetujuan' => date('Y-m-d')]);
         $info = $request->input('status') == 1 ? 'KRS berhasil disetujui' : 'KRS berhasil dibatalkan';
         return redirect()->route('persetujuan.index')->with('info',$info);

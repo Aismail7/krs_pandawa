@@ -24,10 +24,11 @@ class KhsCtrl extends Controller
     {
         //
         $mhs = Auth::user()->mahasiswa->id;
+        
         // dd($mhs);
         $this->data['title'] = 'Nilai - Kartu Hasil Studi ';
         // $this->data['mh'] = Krs::where('mahasiswa_id','=',Auth::user()->mahasiswa->id)->get();
-        $this->data['khs'] = Krs::whereHas('mahasiswa_id','=',$mhs)->whereHas('krsdetil',function($q){
+        $this->data['khs'] = Krs::whereHas('krsdetil',function($q){
             $q->has('nilai');
         })->get();
 
@@ -49,8 +50,8 @@ class KhsCtrl extends Controller
                                                         on c.bobot_id=g.id
                                                     where a.mahasiswa_id='26'
                                                     GROUP BY e.id, f.id");
-// dd ($this->data);
-        return view('mahasiswa.khs.index',$this->data);
+ // dd ($this->data['khs']);
+        return view('mahasiswa.khs.index',$this->data,['idmhs'=>$mhs]);
     }
 
     /**

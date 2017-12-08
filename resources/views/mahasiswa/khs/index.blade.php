@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
@@ -11,7 +12,6 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                             <tr class="text-center">
-                                <th>Mahasiswa</th>
                                 <th>Kode MK</th>
                                 <th>Mata Kuliah</th>
                                 <th>Semester</th>
@@ -25,11 +25,10 @@
                             <?php 
                             $total_sks =0;$total_bobot = 0;$total_ipk = 0 ?>
                            
-                            @foreach($khs as $key=>$value)                            
-                                <tr>
-                                     <td colspan="7">{{$value->mahasiswa_id}} </td>
-                                    <td colspan="7"> Semester {{$value->semester}} </td>
-                                </tr>
+                            @foreach($khs as $key=>$value)
+                            @if ($value->mahasiswa_id==$idmhs)
+
+                               
                                 @foreach($value->krsdetil as $k=>$detil)
                                 @if(isset($detil->nilai))
                                 <tr>
@@ -50,9 +49,9 @@
                                 @endforeach
                                 <?php $ip_semester =round($total_bobot/$total_sks,2); ?>
                                 <tr>
-                                    <td colspan="2">Jumlah SKS </td>
+                                    <td colspan="3">Jumlah SKS </td>
                                     <td colspan="1" class="text-center">{{$total_sks}}</td>
-                                    <td colspan="3">IP Semester</td>
+                                    <td colspan="2">IP Semester</td>
                                     <td colspan="1" class="text-center">{{$ip_semester}}</td>
                                 </tr>
                                 <?php 
@@ -62,7 +61,9 @@
                                     $total_bobot_mk = 0;
                                     $total_bobot = 0;
                                  ?>
+                            @endif
                             @endforeach
+
                             <tr>
                                 <td colspan="6" >IPK</td>
                                 <td class="text-center">{{round($total_ipk,2)}}</td>

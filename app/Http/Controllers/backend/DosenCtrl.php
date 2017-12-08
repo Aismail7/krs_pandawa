@@ -22,6 +22,11 @@ class DosenCtrl extends Controller
         //
         $this->data['title'] = 'Data Dosen';
         $this->data['dosen'] = Dosen::paginate(15);
+
+
+    $isian = DB::select("select count(status) as jml from tbl_krs where status=0");
+         dd($isian);
+         Session::set('isian', $isian[0]->jml);
         return view('backend.dosen.index',$this->data);
     }
 

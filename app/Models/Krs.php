@@ -22,7 +22,7 @@ class Krs extends Model
     }
 
     public function mhs(){
-        return $this->belongsTo('App\Models\Mahasiswa','mahasiswa_id','id');
+        return $this->hasMany('App\Models\Mahasiswa','mahasiswa_id','id');
     }
 
     public function getStatutaAttribute(){
