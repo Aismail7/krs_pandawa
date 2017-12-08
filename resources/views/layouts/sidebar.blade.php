@@ -95,7 +95,11 @@
             <li class="{{Request::segment(2) == 'persetujuan' ? 'active' : ''}}">
                 <a href="{{route('persetujuan.index')}}" style="color:white;">
                     <i class="ti-panel"></i>
-                    <p>Persetujuan KRS</p>
+                    <p>Persetujuan KRS 
+                    @if($isian[0]->jml > 0)
+                        <span class="badge"  style="margin-left:10px;background:red;">{{$isian[0]->jml}}</span>
+                    @endif
+                    </p>
                 </a>
             </li>
             <li class="{{Request::segment(2) == 'nilai' ? 'active' : ''}}">

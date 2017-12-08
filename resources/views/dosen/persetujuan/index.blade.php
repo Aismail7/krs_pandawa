@@ -50,9 +50,7 @@
                             </tr>
                             </form>
                             @endforeach
-                            <br>
-                            ISI COUNT =
-                            @foreach ($isian as $a) {{$a->jml}} @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
